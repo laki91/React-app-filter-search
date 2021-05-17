@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 export default function Post({post}) {
     return (
@@ -16,7 +17,7 @@ export default function Post({post}) {
                             <h6 className='name'>{post.user.name}</h6>
                         </div>
                         <div className="col-6 text-end">
-                            <button  className='btn bt-sm btn-info' >Read more</button>
+                            <Link to={'/post/' + post.id }  className='btn bt-sm btn-info' >Read more</Link>
                         </div>
                     </div>
                     </div> 

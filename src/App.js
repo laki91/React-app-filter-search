@@ -1,21 +1,22 @@
 import { useQuery } from '@apollo/react-hooks'
 import React, { useEffect, useState } from 'react'
+import { BrowserRouter, Route } from 'react-router-dom'
 import Header from './components/Header/Header'
 import PostsList from './components/PostsList/PostsList'
 import { GET_POSTS } from './Queries/GraphqlQuerie'
 
 export default function App() {
 
-  const {loading, data} = useQuery(GET_POSTS)
+  const { loading, data } = useQuery(GET_POSTS)
   const [posts, setPosts] = useState([])
   // const [searchBar, setSearchBar] = useState('')
   const [selectFilter, setSelectFilter] = useState('')
 
-  useEffect(()=>{
-    if(loading){
+  useEffect(() => {
+    if (loading) {
       return <h1>Loading</h1>
     }
-    else{
+    else {
       setPosts(data.posts.data)
     }
   }, [loading, data])
@@ -27,10 +28,10 @@ export default function App() {
   const searchPost = (id) => {
     //console.log(id);
     let search = id
-    if(search === ''){
+    if (search === '') {
       //setSearchBar(searchBar)
       setPosts(data.posts.data)
-    }else{
+    } else {
       let searchFilter = posts.filter(post => {
         return post.title.toLowerCase().includes(id)
       })
@@ -45,10 +46,10 @@ export default function App() {
   const filteringByName = (id) => {
     //console.log(id);
     let filt = id
-    if(filt === ''){
+    if (filt === '') {
       setSelectFilter(filt)
       setPosts(data.posts.data)
-    }else{
+    } else {
       let filteredPost = posts.filter(post => {
         return post.user.name === id
       })
@@ -58,15 +59,16 @@ export default function App() {
   }
 
   return (
-    <div>
-        <h1>hello</h1>
-        <Header 
-          posts={posts} 
-          searchPost={searchPost} 
-          filteringByName={filteringByName} 
+    <BrowserRouter>
+      <Route path='/' exact>
+        <Header
+          posts={posts}
+          searchPost={searchPost}
+          filteringByName={filteringByName}
           selectFilter={selectFilter}
-          />
+        />
         <PostsList posts={posts} />
-    </div>
+      </Route>
+    </BrowserRouter>
   )
 }

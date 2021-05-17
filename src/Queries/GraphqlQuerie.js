@@ -12,6 +12,8 @@ export const GET_POSTS = gql`
                     name
                     address {
                         street
+                        city
+                        zipcode
                     }
                 }
                 comments {
