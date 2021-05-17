@@ -1,7 +1,8 @@
 import React from 'react'
 import SearchBar from './SearchBar/SearchBar'
+import SelectFilter from './SelectFilter/SelectFilter'
 
-export default function Header({ posts, searchPost }) {
+export default function Header({ posts, searchPost, filteringByName, selectFilter }) {
 
     return (
         <div>
@@ -15,7 +16,7 @@ export default function Header({ posts, searchPost }) {
                             <SearchBar searchPost={searchPost} />
                         </div>
                         <div className="col-6">
-                            <select ></select>
+                            <SelectFilter posts={posts} filteringByName={filteringByName} selectFilter={selectFilter} />
                         </div>
                     </div>
                 </div>
