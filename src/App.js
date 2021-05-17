@@ -1,8 +1,9 @@
 import { useQuery } from '@apollo/react-hooks'
 import React, { useEffect, useState } from 'react'
-import { BrowserRouter, Route } from 'react-router-dom'
+import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom'
 import Header from './components/Header/Header'
 import PostsList from './components/PostsList/PostsList'
+import SinglePost from './components/SinglePost/SinglePost'
 import { GET_POSTS } from './Queries/GraphqlQuerie'
 
 export default function App() {
@@ -60,15 +61,21 @@ export default function App() {
 
   return (
     <BrowserRouter>
-      <Route path='/' exact>
-        <Header
+      <Switch>
+      <Route path='/post/:id'>
+          <SinglePost posts={posts} />
+      </Route>
+      <Route path='/posts' exact>
+      <Header
           posts={posts}
           searchPost={searchPost}
           filteringByName={filteringByName}
           selectFilter={selectFilter}
         />
-        <PostsList posts={posts} />
+        <PostsList posts={posts} /> 
       </Route>
+        <Redirect to='/posts' />
+      </Switch>
     </BrowserRouter>
   )
 }

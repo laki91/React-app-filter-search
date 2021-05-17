@@ -1,0 +1,29 @@
+.card {
+    transition: transform .2s;
+    background-color: rgb(182, 192, 201);
+    height: 350px;
+}
+
+.card:hover {
+    transform: scale(1.05);
+}
+
+.card-title {
+    font-weight: 400;
+    font-size: 20px;
+}
+
+.card-footer {
+    width: 90%;
+    margin-top: auto;
+    position: absolute;
+    bottom: 10px;
+}
+
+.name {
+    font-style: italic;
+}
+
+.card-text {
+    margin-top: 20px;
+}
